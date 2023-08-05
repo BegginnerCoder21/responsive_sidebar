@@ -1,6 +1,7 @@
 <template>
-    <div>
-
+    <div class="body">
+        <h1>hello Home</h1>
+        <span>I am about page</span>
     </div>
 </template>
 
@@ -10,4 +11,8 @@
 
 <style scoped>
 
-</style>q
+.body{
+    padding: 2rem;
+}
+
+</style>
