@@ -14,7 +14,7 @@
 <style scoped>
 
 .body{
-    padding: 2rem;
+    padding:  55px;
 }
 
 </style>

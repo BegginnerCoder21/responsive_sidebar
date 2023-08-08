@@ -21,13 +21,21 @@
                     <span class="material-symbols-outlined">description</span>
                     <span class="text">About</span>
                 </router-link>
-                <router-link class="button" to="/">
+                <router-link class="button" to="/team">
                     <span class="material-symbols-outlined">group</span>
                     <span class="text">Team</span>
                 </router-link>
-                <router-link class="button" to="/">
+                <router-link class="button" to="/contact">
                     <span class="material-symbols-outlined">notification_multiple</span>
                     <span class="text">Contact</span>
+                </router-link>
+            </div>
+
+            <div class="flex"></div>
+            <div class="menu">
+                <router-link class="button" to="/settings">
+                    <span class="material-symbols-outlined">settings</span>
+                    <span class="text">Settings</span>
                 </router-link>
             </div>
         </aside>
@@ -37,10 +45,12 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 
-const is_expanded = ref(false)
+const is_expanded = ref(localStorage.getItem('is_expanded') === 'true')
 
 const toggle_menu = () => {
     is_expanded.value = !is_expanded.value;
+
+    localStorage.setItem('is_expanded',is_expanded.value)
 }
 
 </script>
@@ -57,10 +67,17 @@ aside{
     padding: 1rem;
 
     transition: .2s ease-out;
+
+    @media (max-width: 350px) {
+		position: absolute;
+		z-index: 99;
+	}
     
 }
 
-
+.flex{
+    flex: 1 1 0;
+}
 
 button{
     border: none;
@@ -93,12 +110,15 @@ h3,.button .text{
             color: #f1f5f9;
         }
 
-        &:hover{
+        &:hover , &.router-link-exact-active{
             background-color: #334155;
 
             .material-symbols-outlined,.text{
                 color: #4ade80;
             }
+        }
+        &.router-link-exact-active{
+            border-right: 5px solid #4ade80;
         }
     }
 }
@@ -122,7 +142,7 @@ button:hover{
     }
 }
 .is_expanded_style{
-    width: 200px;
+    width: 220px;
     .menu-toggle-wrap{
         top: -50px;
         margin: 0 -1.5rem;
@@ -135,6 +155,10 @@ button:hover{
 
     .men,.button .text{
         opacity: 1;
+    }
+
+    .material-symbols-outlined{
+        margin-right: 1rem;
     }
     
 }
